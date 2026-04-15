@@ -21,7 +21,7 @@ class User {
   }
 
   toJson() {
-    return {"name": name, "age": age, "height": height, "id": id};
+    return {"id": id, "name": name, "age": age, "height": height};
   }
 
   toString() {
