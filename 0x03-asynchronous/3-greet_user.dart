@@ -10,7 +10,11 @@ Future<bool> checkCredentials() =>
 
 Future<String> greetUser() async {
   try {
-    return 'hello ${json.decode(await fetchUserData())['username']}';
+    String data = await fetchUserData();
+
+    Map<String, dynamic> userMap = json.decode(data);
+
+    return 'Hello ${userMap['username']}';
   } catch (err) {
     return 'error caught: $err';
   }
@@ -18,7 +22,9 @@ Future<String> greetUser() async {
 
 Future<String> loginUser() async {
   try {
-    if (await checkCredentials()) {
+    bool hasUser = await checkCredentials();
+
+    if (hasUser) {
       print('There is a user: true');
       return await greetUser();
     } else {
