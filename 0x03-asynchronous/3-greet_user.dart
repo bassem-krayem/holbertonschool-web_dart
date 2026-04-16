@@ -8,15 +8,15 @@ Future<String> fetchUserData() => Future.delayed(
 Future<bool> checkCredentials() =>
     Future.delayed(const Duration(seconds: 2), () => true);
 
-greetUser() async {
+Future<String> greetUser() async {
   try {
     return 'hello ${json.decode(await fetchUserData())['username']}';
   } catch (err) {
-    print('error caught: $err');
+    return 'error caught: $err';
   }
 }
 
-loginUser() async {
+Future<String> loginUser() async {
   try {
     if (await checkCredentials()) {
       print('There is a user: true');
@@ -26,6 +26,6 @@ loginUser() async {
       return 'Wrong credentials';
     }
   } catch (err) {
-    print('error caught: $err');
+    return 'error caught: $err';
   }
 }
