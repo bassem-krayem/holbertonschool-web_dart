@@ -19,8 +19,10 @@ greetUser() async {
 loginUser() async {
   try {
     if (await checkCredentials()) {
+      print('There is a user: true');
       return await greetUser();
     } else {
+      print('There is a user: false');
       return 'Wrong credentials';
     }
   } catch (err) {
